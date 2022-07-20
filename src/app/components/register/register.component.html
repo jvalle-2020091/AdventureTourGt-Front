@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+
+<body>
+  <div class="container">
+    <div class="title">Registrarse</div>
+    <div class="content">
+      <form #registerForm="ngForm" (ngSubmit)="register()">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="requiredFile" *ngIf="!name.valid && name.touched">
+							*Campo obligatorio
+						</span>
+            <span class="details">Nombre</span>
+            <input [(ngModel)]="user.name" #name="ngModel" name="name" type="text" placeholder="Ingresa tu nombre" required>
+          </div>
+          <div class="input-box">
+            <span class="requiredFile" *ngIf="!username.valid && username.touched">
+							*Campo obligatorio
+						</span>
+            <span class="details">Usuario</span>
+            <input  [(ngModel)]="user.username" #username="ngModel" type="text" name="Username"placeholder="Ingresa tu usuario" required>
+          </div>
+          <div class="input-box">
+            <span class="requiredFile" *ngIf="!email.valid && email.touched">
+							*Campo obligatorio
+						</span>
+            <span class="details">Correo</span>
+            <input [(ngModel)]="user.email" #email="ngModel" type="email" name="your-email" id="your-email" placeholder="Ingresa tu correo" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Teléfono</span>
+            <input  [(ngModel)]="user.phone" #phone="ngModel" type="number" name="phone" id="phone" placeholder="Ingresa tu numero" required>
+          </div>
+          <div class="input-box">
+            <span class="requiredFile" *ngIf="!password.valid && password.touched">
+							*Campo obligatorio
+						</span>
+            <span class="details">Contraseña</span>
+            <input (keyup)="checkPassword()" [(ngModel)]="user.password" #password="ngModel"
+						name="password" type="password"   id="your-email" class="input-text"  placeholder="Ingresa tu contraseña" required>
+          </div>
+          <div class="input-box">
+            <span class="requiredFile" *ngIf="!repeatPassword.valid && repeatPassword.touched">
+							*Campo obligatorio
+						</span>
+            <span class="details">Confirmar Contraseña</span>
+            <input (keyup)="checkPassword()" [(ngModel)]="repeatPass" #repeatPassword="ngModel"
+						name="repeatPass"  type="password" id="comfirm-password" type="text" placeholder="Repite tu contraseña" required>
+          </div>
+        </div>
+      
+       <!-- <div class="gender-details">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <input type="radio" name="gender" id="dot-3">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div> -->
+        <div class="button">
+          <input [disabled]="!registerForm.form.valid" type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+

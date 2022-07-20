@@ -1,0 +1,120 @@
+<body>
+  <app-navbar></app-navbar>
+
+  <div *ngIf="token && identity.role === 'ADMIN'" class="text-center mt-2 mb-2">
+    <button class="btn btn-outline-success m-4" data-bs-toggle="modal" data-bs-target="#addCategory">
+      <span class="icon">
+        <i class="fa fa-building" aria-hidden="true"></i>
+      </span>
+      <span class="text">ADD CATEGORY</span>
+    </button>
+  </div>
+  <hr *ngIf="token && identity.role === 'ADMIN'">
+
+
+  <h1>¿A dónde quieres ir?</h1>
+  <div class="wrapper" *ngIf="categorys">
+    <div class="card" *ngFor="let category of categorys">
+      <br>
+      <h3 class="card-title">{{category.name}}</h3>
+      <h6 class="card-subtitle mb-2 text-muted">Descripción: {{category.description}}</h6>
+
+      <div *ngIf="token && identity.role === 'CLIENT'"> <button [routerLink]="['/place/' + category._id]"
+          class="card-btn2">Lugares</button> </div>
+      <br>
+
+
+      <div *ngIf="token && identity.role === 'ADMIN'" class="text-center  ms-3">
+        <button (click)="deleteCategory(category._id)" class="btn btn-outline-danger btn-icon-split">Eliminar</button>
+        <button (click)="getCategory(category._id)" class="btn btn-outline-success btn-icon-split m-2"
+          data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample">Actualizar</button>
+        <button [routerLink]="['/place/' + category._id]" class="btn btn-outline-secondary btn-icon-split m-2"
+          data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Agregar
+          lugares</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Save hotel -->
+  <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addHotelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addHotelLabel">Nueva categoría de lugares</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form #addCategoryForm="ngForm">
+            <div class="mb-3">
+              <label for="form-label" class="form-label">Nombre</label>
+              <input [(ngModel)]="category.name" name="name" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="form-label" class="form-label">Descripción</label>
+              <input [(ngModel)]="category.description" name="address" type="text" class="form-control">
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button (click)="saveCategory(addCategoryForm)" type="submit" class="btn btn-primary"
+            data-bs-dismiss="modal">Guardar Cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- off canvas update -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Actualizar Categoria</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+      <form (ngSubmit)="updateCategory()" *ngIf="categoryUpdate">
+        <div class="mb-3">
+          <label for="nameUpdate" class="form-label">Nombre</label>
+          <input [(ngModel)]="categoryUpdate.name" name="name" type="text" class="form-control"
+            aria-describedby="emailHelp" id="nameUpdate">
+        </div>
+        <div class="mb-3">
+          <label for="addressUpdate" class="form-label">Descripción</label>
+          <input [(ngModel)]="categoryUpdate.description" name="description" type="text" class="form-control"
+            id="descriptionUpdate">
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-outline-success mt-4 me-3" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Upload image
+          </button>
+          <button type="submit" class="btn btn-outline-primary mt-4">Submit</button>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-4" data-bs-dismiss="offcanvas"> Update</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="image" class="form-label">Select image: </label>
+            <input (change)="filesChange($event)" type="file" class="form-control" id="image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>

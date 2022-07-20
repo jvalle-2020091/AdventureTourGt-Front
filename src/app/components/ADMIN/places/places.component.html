@@ -1,0 +1,123 @@
+<body>
+    <app-navbar></app-navbar>
+    <div *ngIf="token && identity.role === 'ADMIN'" class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-success m-4" data-bs-toggle="modal" data-bs-target="#addPlace">
+          <span class="icon">
+            <i class="fa fa-building" aria-hidden="true"></i>
+          </span>
+          <span class="text">AGREGAR LUGAR</span>
+        </button>
+      </div>
+      <hr *ngIf="token && identity.role === 'ADMIN'">
+    <div class="text-center mt-4">
+        <h1>Lugares turísticos</h1>
+    </div> 
+    
+    <div class="row background">
+        <div *ngFor="let place of places  " class="card m-4 text-center" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ place.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Descripción: {{ place.description }}</h6>
+                <br>
+                <h6 class="card-subtitle mb-2 text-muted">Ubicación {{ place.location }}</h6>
+                
+                <button *ngIf="token && identity.role === 'ADMIN'"
+                    (click)="getPlace(place._id)" class="btn btn-outline-primary m-2" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasUpdateRoom" aria-controls="offcanvasExample">
+                    Actualizar
+                </button>
+                <button *ngIf="token && identity.role === 'ADMIN'"
+                    (click)="deletePlace(place._id)" class="btn btn-outline-danger ">Eliminar</button>
+            </div>
+            <button *ngIf="token"
+                     class="btn btn-outline-success m-2">Ver tours</button>
+        </div>
+    </div>
+    
+    <!--  Agregar Lugar-->
+    <div class="modal fade" id="addPlace" tabindex="-1" aria-labelledby="addHotelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addHotelLabel">Nuevo lugar</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+    
+              <form #addPlaceForm="ngForm">
+                <div class="mb-3">
+                  <label for="form-label" class="form-label">Nombre</label>
+                  <input [(ngModel)]="place.name" name="name" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="form-label" class="form-label">Descripción</label>
+                  <input [(ngModel)]="place.description" name="address" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="form-label" class="form-label">Ubicación</label>
+                    <input [(ngModel)]="place.location" name="address" type="text" class="form-control">
+                  </div>
+              </form>
+    
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button (click)="savePlace(addPlaceForm)" type="submit" class="btn btn-primary"
+                data-bs-dismiss="modal">Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!--  Editar Lugar-->
+    
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasUpdateRoom"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasUpdateRoom">Actualizar lugar</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+    
+            <form (ngSubmit)="updatePlace()" *ngIf="placeUpdate">
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input [(ngModel)]="placeUpdate.name" name="name" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <input [(ngModel)]="placeUpdate.description" name="description" type="text" class="form-control"
+                        id="description">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ubicación</label>
+                    <input [(ngModel)]="placeUpdate.location" name="location" type="text" class="form-control" id="price">
+                </div>
+                <button type="submit" class="btn btn-success mt-4" data-bs-dismiss="offcanvas"> Actualizar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal upload image-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="image" class="form-label">Select image: </label>
+                <input (change)="filesChange($event)" type="file" class="form-control" id="image">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button (click)="uploadImage()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+    </div>   
+</body>
