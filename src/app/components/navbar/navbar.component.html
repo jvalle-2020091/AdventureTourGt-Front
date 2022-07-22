@@ -16,7 +16,10 @@
           <a *ngIf="!token"  class="nav-link" routerLink="/register" >Registrarse</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/category" >¿A dondé quieres ir?</a>
+          <a class="nav-link" routerLink="/category" >¿A dónde quieres ir?</a>
+        </li>
+        <li *ngIf="token && identity.role === 'ADMIN' "  class="nav-item">
+          <a class="nav-link" routerLink="/services" >Servicios</a>
         </li>
         <li *ngIf="token" class="nav-item">
           <a class="nav-link disabled" >
@@ -26,14 +29,9 @@
           </a>
       </li>
 
-      <li *ngIf="token"  class="nav-item">
-        <a class="nav-link" (click)="logOut()" >logOut</a>
-      </li>
-      
-
       <li *ngIf="token" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-         dropdown
+         Mas acciones
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>

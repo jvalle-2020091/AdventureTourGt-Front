@@ -1,0 +1,210 @@
+<app-navbar></app-navbar>
+
+<!--BOTONES DE ACCESO RÁPIDO-->
+<div *ngIf="token && identity.role === 'ADMIN' " class="text-center mt-2 mb-2">
+    <button class="btn btn-outline-success m-4" data-bs-toggle="modal" data-bs-target="#addTour">
+        <span class="icon">
+            <i class="fa fa-building" aria-hidden="true"></i>
+        </span>
+        <span class="text">Nuevo Tour</span>
+    </button>
+</div>
+<hr *ngIf="token && identity.role === 'ADMIN' ">
+
+<div class="text-center mt-4">
+    <h1>Tours</h1>
+</div> 
+
+
+<!--MODAL ADDTour -->
+<div class="modal fade" id="addTour" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel4"><i class="fa fa-building" aria-hidden="true"></i>
+                    &nbsp; Agregar Tour:</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #addTourForm="ngForm">
+                    <div class="mb-3">
+                        <label for="nameTeam" class="form-label">Nombre</label>
+                        <input [(ngModel)]="tour.name" name="name" type="text" class="form-control" id="nameTeam43"
+                            aria-describedby="DateEventHelp">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="countryTeam" class="form-label">Fecha del Tour</label>
+                        <input [(ngModel)]="tour.date" name="date" type="date" value="2022-01-01" class="form-control" id="countryTeam">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="countryTeam" class="form-label">Duración del Tour</label>
+                        <input [(ngModel)]="tour.duration" name="duration" type="number" class="form-control"
+                            id="countryTeam34">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descriptionTeam" class="form-label">No. Tickets</label>
+                        <input [(ngModel)]="tour.stockTicket" name="stockTicket" type="number" class="form-control"
+                            id="descriptionTeamte">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descriptionTeam12" class="form-label">Precio del ticket</label>
+                        <input [(ngModel)]="tour.priceTicket" name="priceTicket" type="number" class="form-control"
+                            id="descriptionTeamte12">
+                    </div>
+
+
+                    <div>
+                        <label class="form-label">Servicios</label>
+                        <select multiple [(ngModel)]="tour.service" name="tourservice" class="form-select"
+                            aria-label="Default select example">
+                            <option disabled value="" selected>Selecciona los servicios del tour</option>
+                            <option *ngFor="let service of services" value="{{service._id}}">{{service.name}}</option>
+                        </select>
+                        <p class=" m-3 text-center fst-italic">
+                            <small>Nota: Si te encuentras en desktop usa Ctrl + Clic para seleccionar varios
+                                servicios.</small>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class=" modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i> Descartar</button>
+                <button (click)="saveTour(addTourForm)" type="submit" class="btn btn-success" data-bs-dismiss="modal"><i
+                        class="fa fa-floppy-o" aria-hidden="true"></i> Guardar Tour
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Table View Tour -->
+
+<div class="m-4">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Tour</th>
+                <th scope="col" class="text-center">Servicios</th>
+                <th scope="col" class="text-center">Fecha</th>
+                <th scope="col" class="text-center">Duración</th>
+                <th scope="col" class="text-center">Stock de Tickets</th>
+                <th scope="col" class="text-center">Precio del Ticket</th>
+                <th scope="col" class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tour of tours |search:search">
+                <td class="text-center">{{tour.name}}</td>
+                <td class="text-center">{{ tour.service}}</td>
+                <td class="text-center">{{tour.date | date: 'mediumDate'}}</td>
+                <td class="text-center" >{{ tour.duration}} Días</td>
+                <td class="text-center">#{{tour.stockTicket}}</td>
+                <td class="text-center">{{tour.priceTicket | currency: 'Q' }}</td>
+                <td class="text-center">
+                    <button *ngIf="token && identity.role === 'ADMIN' " (click)="getTour(tour._id)" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasUpdate" class=" btn btn-outline-warning m-2 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                            <path
+                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                        </svg>
+                        Actualizar
+                    </button>
+                    <button *ngIf="token && identity.role === 'ADMIN' " (click)="deleteTour(tour._id)"
+                        class=" btn btn-outline-danger ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                        Elimiar</button>
+
+                        <button *ngIf="token && identity.role === 'CLIENT' " 
+                        [routerLink]="['/shoppCart/' + tour._id]"
+                        class="btn btn-outline-warning">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>
+                        </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--OFF CANVAS DE UPDATE BRANCH-->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasUpdate" aria-labelledby="offcanvasUpdateLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasUpdateLabel">Actualizar Tour</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+        <form (ngSubmit)="updateTour()" *ngIf="tourUpdate">
+            
+            <div class="mb-3">
+                <label for="nameUpdate" class="form-label">Nombre</label>
+                <input [(ngModel)]="tourUpdate.name" name="name" type="text" class="form-control" id="nameUpdate"
+                    aria-describedby="emailHelp">
+            </div>
+            
+            <div class="mb-3">
+                <label for="dateUpdate" class="form-label">Fecha de Tour</label>
+                <input [(ngModel)]="tourUpdate.date" name="date"  type="date" value="2022-01-01" class="form-control" id="dateUpdate">
+            </div>
+
+            <div class="mb-3">
+                <label for="durationUpdate" class="form-label">Duración</label>
+                <input [(ngModel)]="tourUpdate.duration" name="duration" type="number"  class="form-control" id="durationUpdate"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="stockUpdate" class="form-label">Stock de Ticket</label>
+                <input [(ngModel)]="tourUpdate.stockTicket" name="stockTicket" type="number" class="form-control" id="stockUpdate"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="priceTicketUpdate" class="form-label">Precio del Ticket </label>
+                <input [(ngModel)]="tourUpdate.priceTicket" name="priceTicket" type="number" class="form-control" id="priceTicketUpdate"
+                    aria-describedby="emailHelp">
+            </div>
+
+           
+
+            <div class="mb-3">
+                <label for="placeUpdate" class="form-label">Servicio</label>
+                <select multiple [(ngModel)]="tourUpdate.service._id" name="place" class="form-select" aria-label="Default select example"
+                    id="categoryUpdate">
+                    <option disabled value="" selected>Selecciona los servicios</option>
+                    <option *ngFor="let service of services" value="{{ service._id }}">{{ service.name }}</option>
+                </select>
+                <p class=" m-3 text-center fst-italic">
+                    <small>Nota: Si te encuentras en desktop usa Ctrl + Clic para seleccionar varios
+                        servicios.</small>
+                </p>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-success m-2" data-bs-dismiss="offcanvas">Actualizar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

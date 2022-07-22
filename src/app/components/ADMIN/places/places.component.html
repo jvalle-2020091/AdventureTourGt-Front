@@ -30,7 +30,7 @@
                     (click)="deletePlace(place._id)" class="btn btn-outline-danger ">Eliminar</button>
             </div>
             <button *ngIf="token"
-                     class="btn btn-outline-success m-2">Ver tours</button>
+                     class="btn btn-outline-success m-2" [routerLink]="['/tour/' + place._id]">Ver tours</button>
         </div>
     </div>
     

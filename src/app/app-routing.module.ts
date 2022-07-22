@@ -7,6 +7,10 @@ import { LoginComponent } from './components/login/login.component';
 import { CategoryPlacesComponent } from './components/ADMIN/category-places/category-places.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PlacesComponent } from './components/ADMIN/places/places.component'
+import { ServicesComponent } from './components/service/service.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { TourComponent } from './components/tour/tour.component';
+
 
 
 
@@ -19,6 +23,11 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'category', component: CategoryPlacesComponent},
   {path: 'place/:idCategory', component: PlacesComponent},
+  {path: 'services', component: ServicesComponent},
+  {path: 'shoppCart/:idTour', component: ShoppingCartComponent},
+  {path: 'tour/:idPlace', component:TourComponent},
+
+
 
   {path: '**', component:NotFoundComponent}
 

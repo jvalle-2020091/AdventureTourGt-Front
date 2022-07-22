@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SearchPipe } from './pipes/search.pipe'; 
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +17,9 @@ import { PlacesComponent } from './components/ADMIN/places/places.component';
 import { CategoryPlacesComponent } from './components/ADMIN/category-places/category-places.component';
 import { UsersComponent } from './components/ADMIN/users/users.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { ServicesComponent } from './components/service/service.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { TourComponent } from './components/tour/tour.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,12 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     PlacesComponent,
     CategoryPlacesComponent,
     UsersComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    ServicesComponent,
+    ShoppingCartComponent,
+    TourComponent,
+    SearchPipe,
+
   ],
   imports: [
     BrowserModule,

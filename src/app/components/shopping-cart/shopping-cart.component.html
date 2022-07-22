@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+<br>
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<div  class="container" *ngIf="tours">
+  <table id="cart" class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th style="width:50%">Tour</th>
+        <th style="width:10%">Price</th>
+        <th style="width:8%">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td  data-th="Product">
+          <div class="row">
+            <div class="col-sm-2 hidden-xs"><img src="../../../assets/LOGOTIPO ADVENTURE TOUR GT (1).png" width="100px" alt="..." class="img-responsive" /></div>
+            <div class="col-sm-10" >
+              <h4 class="nomargin">{{ tours.name }}</h4>
+              <p>Que incluye: {{tours.service}} y una duración de {{tours.duration}} <br>
+              Lugar: {{tours.place.name}}
+              </p>
+            </div>
+          </div>
+        </td>
+        <td data-th="Price">Q{{tours.priceTicket}}</td>
+        <td data-th="Quantity">
+          <input [(ngModel)]="quantity" type="number" class="form-control text-center" value="1">
+        </td>
+       
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td><a [routerLink]="['/tour']" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+        <td colspan="2" class="hidden-xs"></td>
+        <td  ><button (click)="addToShoppingCart()" class="btn btn-success ">Agregar al carrito <i class="fa fa-angle-right"></i></button></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<br>
+<hr>
+
+<div  class="container" *ngIf="shoppCart" >
+  <table id="cart" class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th style="width:50%">Tour</th>
+        <th style="width:10%">Price</th>
+        <th style="width:8%">Quantity</th>
+        <th style="width:22%" class="text-center">Subtotal</th>
+        <th style="width:10%"></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let tour of shoppCart.tours" >
+      <tr>
+        <td  data-th="Product">
+          <div class="row">
+            <div class="col-sm-2 hidden-xs"><img src="../../../assets/LOGOTIPO ADVENTURE TOUR GT (1).png" width="100px" alt="..." class="img-responsive" /></div>
+            <div  class="col-sm-10" >
+              <h4 class="nomargin">{{ tour.tour.name}}</h4>
+              <p>Duración de {{tour.tour.duration}} <br>
+                 Fecha: {{tour.tour.date | date: 'mediumDate'}}
+              </p>
+            </div>
+          </div>
+        </td>
+        <td data-th="Price">Q{{tour.tour.priceTicket}}.00</td> 
+        <td data-th="Quantity">x {{tour.quantity}}</td>
+        <td data-th="Subtotal" class="text-center">Q{{tour.subTotal}}.00</td>
+        <td class="actions" data-th="">
+          <button class="btn btn-info btn-sm "><i class="fa fa-refresh m-2 "></i></button> 
+          <button class="btn btn-danger btn-sm "><i class="fa fa-trash-o m-2"></i></button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr class="visible-xs">
+        <td class="text-center"><strong>Total Q{{shoppCart.total}}.00</strong></td>
+      </tr>
+      <tr>
+        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+        <td colspan="2" class="hidden-xs"></td>
+        <td class="hidden-xs text-center"><strong>Total Q{{shoppCart.total}}.00</strong></td>
+        <td><button (click)="addToShoppingCart()" class="btn btn-success btn-block">Pagar <i class="fa fa-angle-right"></i></button></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+
+
+
+
+
+ 
