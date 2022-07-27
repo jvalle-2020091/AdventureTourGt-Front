@@ -1,99 +1,399 @@
 <app-navbar></app-navbar>
-<br>
+<br />
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<div  class="container" *ngIf="tours">
+<link
+  href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<div class="container" *ngIf="tours">
   <table id="cart" class="table table-hover table-condensed">
     <thead>
       <tr>
-        <th style="width:50%">Tour</th>
-        <th style="width:10%">Price</th>
-        <th style="width:8%">Quantity</th>
+        <th style="width: 50%">Tour</th>
+        <th style="width: 10%">Price</th>
+        <th style="width: 8%">Quantity</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td  data-th="Product">
+        <td data-th="Product">
           <div class="row">
-            <div class="col-sm-2 hidden-xs"><img src="../../../assets/LOGOTIPO ADVENTURE TOUR GT (1).png" width="100px" alt="..." class="img-responsive" /></div>
-            <div class="col-sm-10" >
+            <div class="col-sm-2 hidden-xs">
+              <img
+                src="../../../assets/LOGOTIPO ADVENTURE TOUR GT (1).png"
+                width="100px"
+                alt="..."
+                class="img-responsive"
+              />
+            </div>
+            <div class="col-sm-10">
               <h4 class="nomargin">{{ tours.name }}</h4>
-              <p>Que incluye: {{tours.service}} y una duración de {{tours.duration}} <br>
-              Lugar: {{tours.place.name}}
+              <p>
+                Que incluye: {{ tours.service }} y una duración de
+                {{ tours.duration }} días <br />
+                Lugar: {{ tours.place.name }}
               </p>
             </div>
           </div>
         </td>
-        <td data-th="Price">Q{{tours.priceTicket}}</td>
+        <td data-th="Price">Q{{ tours.priceTicket }}</td>
         <td data-th="Quantity">
-          <input [(ngModel)]="quantity" type="number" class="form-control text-center" value="1">
+          <input
+            [(ngModel)]="quantity"
+            type="number"
+            class="form-control text-center"
+            value="1"
+          />
         </td>
-       
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <td><a [routerLink]="['/tour']" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+        <td>
+          <a routerLink="/category" class="btn btn-warning"
+            ><i class="fa fa-angle-left"></i> Continue Shopping</a
+          >
+        </td>
         <td colspan="2" class="hidden-xs"></td>
-        <td  ><button (click)="addToShoppingCart()" class="btn btn-success ">Agregar al carrito <i class="fa fa-angle-right"></i></button></td>
+        <td>
+          <button (click)="addToShoppingCart()" class="btn btn-success">
+            Agregar al carrito
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          </button>
+        </td>
       </tr>
     </tfoot>
   </table>
 </div>
 
-<br>
-<hr>
+<br />
+<hr />
 
-<div  class="container" *ngIf="shoppCart" >
+<div class="container" *ngIf="shoppCart">
   <table id="cart" class="table table-hover table-condensed">
     <thead>
       <tr>
-        <th style="width:50%">Tour</th>
-        <th style="width:10%">Price</th>
-        <th style="width:8%">Quantity</th>
-        <th style="width:22%" class="text-center">Subtotal</th>
-        <th style="width:10%"></th>
+        <th style="width: 50%">Tour</th>
+        <th style="width: 10%">Price</th>
+        <th style="width: 8%">Quantity</th>
+        <th style="width: 22%" class="text-center">Subtotal</th>
+        <th style="width: 10%"></th>
       </tr>
     </thead>
-    <tbody *ngFor="let tour of shoppCart.tours" >
+    <tbody *ngFor="let tour of shoppCart.tours">
       <tr>
-        <td  data-th="Product">
+        <td data-th="Product">
           <div class="row">
-            <div class="col-sm-2 hidden-xs"><img src="../../../assets/LOGOTIPO ADVENTURE TOUR GT (1).png" width="100px" alt="..." class="img-responsive" /></div>
-            <div  class="col-sm-10" >
-              <h4 class="nomargin">{{ tour.tour.name}}</h4>
-              <p>Duración de {{tour.tour.duration}} <br>
-                 Fecha: {{tour.tour.date | date: 'mediumDate'}}
+            <div class="col-sm-2 hidden-xs">
+              <img
+                src="../../../assets/LOGOTIPO ADVENTURE TOUR GT (1).png"
+                width="100px"
+                alt="..."
+                class="img-responsive"
+              />
+            </div>
+            <div class="col-sm-10">
+              <h4 class="nomargin">{{ tour.tour.name }}</h4>
+              <p>
+                Duración de {{ tour.tour.duration }} días<br />
+                Fecha: {{ tour.tour.date | date: "mediumDate" }}
               </p>
             </div>
           </div>
         </td>
-        <td data-th="Price">Q{{tour.tour.priceTicket}}.00</td> 
-        <td data-th="Quantity">x {{tour.quantity}}</td>
-        <td data-th="Subtotal" class="text-center">Q{{tour.subTotal}}.00</td>
+        <td data-th="Price">Q{{ tour.tour.priceTicket }}.00</td>
+        <td data-th="Quantity">x {{ tour.quantity }}</td>
+        <td data-th="Subtotal" class="text-center">Q{{ tour.subTotal }}.00</td>
         <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm "><i class="fa fa-refresh m-2 "></i></button> 
-          <button class="btn btn-danger btn-sm "><i class="fa fa-trash-o m-2"></i></button>
+          <button (click)="deleteTour(tour._id)" class="btn btn-danger btn-sm">
+            <i class="fa fa-trash-o m-2"></i>
+          </button>
         </td>
       </tr>
     </tbody>
     <tfoot>
       <tr class="visible-xs">
-        <td class="text-center"><strong>Total Q{{shoppCart.total}}.00</strong></td>
+        <td class="text-center">
+          <strong>Total Q{{ shoppCart.total }}.00</strong>
+        </td>
       </tr>
       <tr>
-        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+        <td>
+          <button (click)="cleanShoppCart()" class="btn btn-danger">
+            <i class="fa fa-times" aria-hidden="true"></i> Limpiar Carrito
+          </button>
+        </td>
         <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total Q{{shoppCart.total}}.00</strong></td>
-        <td><button (click)="addToShoppingCart()" class="btn btn-success btn-block">Pagar <i class="fa fa-angle-right"></i></button></td>
+        <td class="hidden-xs text-center">
+          <strong>Total Q{{ shoppCart.total }}.00</strong>
+        </td>
+        <td>
+          <button
+            class="btn btn-success btn-block"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Pagar <i class="fa fa-money" aria-hidden="true"></i>
+          </button>
+        </td>
       </tr>
     </tfoot>
   </table>
 </div>
 
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Factura</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form #addInvoiceForm="ngForm">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">NAME</label>
+            <input
+              [(ngModel)]="invoice.name"
+              name="name"
+              type="text"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+            <div id="emailHelp" class="form-text">
+              Nombre a quien saldrá la factura
+            </div>
+          </div>
 
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">NIT</label>
+            <input
+              [(ngModel)]="invoice.NIT"
+              name="NIT"
+              type="text"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+            <div id="emailHelp" class="form-text">Vacio C/F</div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal2"
+          (click)="addInvoice(addInvoiceForm)"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Invoice
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Factura</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body" *ngIf="invoiceRes">
+        <link
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+          rel="stylesheet"
+        />
 
+        <div class="container">
+          <div class="col-md-12">
+            <div class="invoice">
+              <div class="card">
+                <div class="card-body">
+                  <div class="container mb-5 mt-3">
+                    <div class="row d-flex align-items-baseline">
+                      <div class="col-xl-9" *ngIf="invoiceRes">
+                        <p style="color: #7e8d9f; font-size: 20px">
+                          FACTURA >>
+                          <strong
+                            >serial: {{ invoiceRes.numberInvoice }}</strong
+                          >
+                        </p>
+                      </div>
+                      <div class="invoice-company text-inverse f-w-600">
+                        <span class="pull-right hidden-print">
+                          <a
+                            href="javascript:;"
+                            onclick="window.print()"
+                            class="btn btn-sm btn-white m-b-10 p-l-5"
+                            ><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i>
+                            Print</a
+                          >
+                        </span>
+                      </div>
+                      <hr />
+                    </div>
 
+                    <div class="container">
+                      <div class="col-md-12">
+                        <div class="text-center">
+                          <i
+                            class="fab fa-mdb fa-4x ms-0"
+                            style="color: #5d9fc5"
+                          ></i>
+                          <p class="pt-0">Adventure Tour GT</p>
+                        </div>
+                      </div>
 
- 
+                      <div class="row">
+                        <div class="col-xl-8" *ngIf="invoiceRes">
+                          <ul class="list-unstyled">
+                            <li class="text-muted">
+                              Nombre:
+                              <span style="color: #5d9fc5">{{
+                                invoiceRes.name
+                              }}</span>
+                            </li>
+                            NIT:
+                            {{
+                              invoiceRes.NIT
+                            }}<br />
+                          </ul>
+                        </div>
+                        <div class="col-xl-4" *ngIf="invoiceRes">
+                          <p class="text-muted">Factura</p>
+                          <ul class="list-unstyled">
+                            <li class="text-muted">
+                              <i
+                                class="fa fa-circle"
+                                aria-hidden="true"
+                                style="color: #84b0ca"
+                              ></i>
+                              <span class="fw-bold">serial:</span
+                              >{{ invoiceRes.numberInvoice }}
+                            </li>
+                            <li class="text-muted">
+                              <i
+                                class="fa fa-circle"
+                                aria-hidden="true"
+                                style="color: #84b0ca"
+                              >
+                              </i>
+                              <span class="fw-bold">Fecha: </span
+                              >{{ invoiceRes.date }}
+                            </li>
+                            <li class="text-muted">
+                              <i
+                                class="fa fa-circle"
+                                aria-hidden="true"
+                                style="color: #84b0ca"
+                              ></i>
+                              <span class="me-1 fw-bold">Status:</span
+                              ><span
+                                class="badge bg-warning text-black fw-bold"
+                              >
+                                Unpaid</span
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="row my-2 mx-1 justify-content-center">
+                        <table class="table table-striped table-borderless">
+                          <thead
+                            style="background-color: #84b0ca"
+                            class="text-white"
+                          >
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Tour</th>
+                              <th scope="col">Cantidad</th>
+                              <th scope="col">Precio ticket</th>
+                              <th scope="col">Subtotal</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td *ngIf="tourRes">{{ tourRes.name }}</td>
+                              <td *ngIf="tourQuantity">{{ tourQuantity }}</td>
+                              <td *ngIf="tourRes">
+                                Q{{ tourRes.priceTicket }}.00
+                              </td>
+                              <td *ngIf="tourSubTotal">
+                                Q{{ tourSubTotal }}.00
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="row">
+                        <div class="col-xl-8"></div>
+                        <div class="col-xl-3" *ngIf="invoiceRes">
+                          <ul class="list-unstyled">
+                            <li class="text-muted ms-3">
+                              <span class="text-black me-4">SubTotal</span>Q{{
+                                invoiceRes.subTotal
+                              }}
+                            </li>
+                            <li class="text-muted ms-3 mt-2">
+                              <span class="text-black me-4">IVA(12%)</span>Q{{
+                                invoiceRes.IVA | number
+                              }}
+                            </li>
+                          </ul>
+                          <p class="text-black float-start">
+                            <span class="text-black me-3"> Total </span
+                            ><span style="font-size: 25px"
+                              >Q{{ invoiceRes.total }}.00</span
+                            >
+                          </p>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col-xl-10">
+                          <p>Disfuta a lo máximo el Tour</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

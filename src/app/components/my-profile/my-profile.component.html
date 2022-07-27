@@ -1,1 +1,196 @@
-<p>my-profile works!</p>
+<app-navbar></app-navbar>
+<body>
+  <br />
+  <section class="seccion-perfil-usuario">
+    <div class="perfil-usuario-header">
+      <div class="perfil-usuario-portada">
+        <div class="perfil-usuario-avatar">
+          <img
+            src="https://i.blogs.es/66b2a4/photo-1511367461989-f85a21fda167/1366_2000.jpeg"
+            class="image"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrapper">
+    <div class="title">
+      <h3 class="text-warning">
+        <small></small>
+        iii
+      </h3>
+    </div>
+    <form autocomplete="off" class="form">
+      <div class="inputfield">
+        <label
+          ><i class="fa fa-address-card-o" aria-hidden="true"></i> Name</label
+        >
+        <input
+          disabled
+          name="name"
+          autocomplete="off"
+          type="text"
+          class="input"
+        />
+      </div>
+      <div class="inputfield">
+        <label
+          ><i class="fa fa-user-circle" aria-hidden="true"></i> Username</label
+        >
+        <input
+          disabled
+          name="username"
+          autocomplete="off"
+          type="text"
+          class="input"
+        />
+      </div>
+      <div class="inputfield">
+        <label><i class="fa fa-envelope" aria-hidden="true"></i> Email</label>
+        <input
+          disabled
+          name="email"
+          autocomplete="off"
+          type="text"
+          class="input"
+        />
+      </div>
+      <div class="inputfield">
+        <label><i class="fa fa-phone" aria-hidden="true"></i> Phone</label>
+        <input
+          disabled
+          name="phone"
+          autocomplete="off"
+          type="text"
+          class="input"
+        />
+      </div>
+
+      <div class="mt-5 modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          Eliminar Cuenta
+        </button>
+        <button
+          type="submit"
+          class="btn btn-warning m-2"
+          data-bs-toggle="modal"
+          data-bs-target="#EditarUser"
+        >
+          <i class="fa fa-refresh" aria-hidden="true"></i> Actualizar Cuenta
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!--MODAL EDITAR USUARIO-->
+  <div
+    class="modal fade"
+    id="EditarUser"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #5dade2">
+          <h5 class="modal-title" id="exampleModalLabel">Update My Profile</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Name</label>
+              <input type="text" class="form-control" name="email" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Username</label
+              >
+              <input type="email" class="form-control" name="username" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"
+                >Email</label
+              >
+              <input type="text" class="form-control" name="email" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Phone</label>
+              <input type="email" class="form-control" name="phone" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button
+            type="button"
+            class="btn btn-danger text-center"
+            data-bs-dismiss="modal"
+          >
+            <i class="fa fa-times-circle" aria-hidden="true"></i> Close
+          </button>
+          <button
+            type="submit"
+            data-bs-dismiss="modal"
+            class="btn btn-warning text-center"
+          >
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboards="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">My History</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Hotel</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

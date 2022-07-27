@@ -55,6 +55,37 @@ export class UserRestService {
     });
   }
 
+   //FUNCIONES DE ADMINISTRADOR//
+   getUsers()
+   {
+     return this.http.get(environment.baseUri + 'user/getUsers', {
+       headers: {
+         'Content-Type': 'application/json',
+         Authorization: this.getToken(),
+       },
+     });
+   }
+
+   getUser(id : string)
+   {
+     return this.http.get(environment.baseUri + 'user/getUser/' + id, {headers : this.httpOptions});
+   }
+ 
+   saveUser(params : {})
+   {
+     return this.http.post(environment.baseUri + 'user/saveUserHotel', params, {headers: this.httpOptions});
+   }
+ 
+   deleteUser(id : string)
+   {
+     return this.http.delete(environment.baseUri + 'user/deleteUserHotel/' + id, {headers: this.httpOptions});
+   }
+ 
+   updateUser(id: string, params : {})
+   {
+     return this.http.put(environment.baseUri + 'user/updateUserHotel/' + id , params, {headers: this.httpOptions})
+   }
+
   // Solicitar el token
   getToken() {
     let globalToken = localStorage.getItem('token');

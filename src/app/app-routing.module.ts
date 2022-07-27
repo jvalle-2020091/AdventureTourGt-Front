@@ -10,6 +10,10 @@ import { PlacesComponent } from './components/ADMIN/places/places.component'
 import { ServicesComponent } from './components/service/service.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { TourComponent } from './components/tour/tour.component';
+import { InvoiceComponent} from './components/ADMIN/invoice/invoice.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { UsersComponent} from './components/ADMIN/users/users.component';
+
 
 
 
@@ -26,6 +30,9 @@ const routes: Routes = [
   {path: 'services', component: ServicesComponent},
   {path: 'shoppCart/:idTour', component: ShoppingCartComponent},
   {path: 'tour/:idPlace', component:TourComponent},
+  {path: 'invoice', component: InvoiceComponent},
+  {path: 'myProfile', component: MyProfileComponent},
+  {path: 'users', component: UsersComponent},
 
 
 

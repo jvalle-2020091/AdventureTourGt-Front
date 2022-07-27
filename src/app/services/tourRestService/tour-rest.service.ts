@@ -30,8 +30,8 @@ export class TourRestService {
     return this.http.post(environment.baseUri + 'tour/saveTour/' + idPlace , params, { headers: this.httpOptions });
   }
 
-  updateTour(id: string, params: {}) {
-    return this.http.put(environment.baseUri + 'tour/updateTour/' + id, params, { headers: this.httpOptions });
+  updateTour(idPlace: string, id: string, params: {}) {
+    return this.http.put(environment.baseUri + 'tour/updateTour/' + idPlace + '/'+ id, params, { headers: this.httpOptions });
   }
 
   deleteTour(id: string) {

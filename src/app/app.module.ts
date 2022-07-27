@@ -20,6 +20,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { ServicesComponent } from './components/service/service.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { TourComponent } from './components/tour/tour.component';
+import { InvoiceComponent } from './components/ADMIN/invoice/invoice.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TourComponent } from './components/tour/tour.component';
     ShoppingCartComponent,
     TourComponent,
     SearchPipe,
+    InvoiceComponent,
 
   ],
   imports: [

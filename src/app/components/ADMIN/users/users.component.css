@@ -1,0 +1,18 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    /*background-image: url('../../../assets/FONDS-GUIDE-HOTEL-1.png');*/
+    background: linear-gradient(135deg, #71b7e6, #203b75);
+    height: 200vh
+}
+
+h1 {
+    text-align: center;
+    color: #4d350a;
+    font-size: 60px;
+    font-family: Times New Roman;
+
+}
+
+hr{
+    color: #413117; 
+}

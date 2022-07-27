@@ -122,7 +122,7 @@ export class TourComponent implements OnInit {
   }
 
   updateTour() {
-    this.tourRest.updateTour(this.tourUpdate._id, this.tourUpdate).subscribe({
+    this.tourRest.updateTour(this.idPlace, this.tourUpdate._id, this.tourUpdate).subscribe({
       next: (res: any) => {
         Swal.fire({ icon: 'success', title: res.message, });
         this.getTourByPlace();

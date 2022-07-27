@@ -1,51 +1,63 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-body{
+
+body {
     font-family: 'Roboto', sans-serif;
     /*background-image: url('../../../assets/FONDS-GUIDE-HOTEL-1.png');*/
-    background:#ffffff;
-    height: 100vh
+    background: linear-gradient(135deg, #71b7e6, #203b75);
+    height: 200vh
 }
 
-
-h1{
+h1 {
     text-align: center;
-    color: #253653;
+    color: #4d350a;
+    font-size: 60px;
+    font-family: Times New Roman;
+
 }
-.wrapper{
+
+hr{
+    color: #b9790a; 
+}
+
+.wrapper {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
-.card{
-   max-width: 300px;
+
+.card {
+    max-width: 300px;
     min-height: 250px;
-    background: #122968;
+    background: #182c64;
     padding: 30px;
     box-sizing: border-box;
     color: #FFF;
-    margin:20px;
-    box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
-    
+    margin: 20px;
+    box-shadow: 0px 2px 18px -4px rgba(0, 0, 0, 0.75);
+
 }
+
 /*.card:nth-child(2){
    background: #1f407a;
 }
 .card:last-child{
    background: #253653;
 }*/
-.card-title{
+.card-title {
     margin-top: 0;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 1.2px;
 }
-.card-content{
+
+.card-content {
     font-size: 14px;
     letter-spacing: 0.5px;
     line-height: 1.5;
 }
-.card-btn{
-    position:center;
+
+.card-btn {
+    position: center;
     all: unset;
     display: block;
     margin-left: 65px;
@@ -59,9 +71,9 @@ h1{
     letter-spacing: 1.2px;
 }
 
-.card-btn2{
+.card-btn2 {
     all: unset;
-    
+
     margin-left: 65px;
     border: 2px solid #FFF;
     padding: 10px 30px;
@@ -72,14 +84,17 @@ h1{
     cursor: pointer;
     letter-spacing: 1.2px;
 }
-.card-btn:hover{
-   color:#0f1a4b;
-   background: #FFF;
-}
-.card-btn2:hover{
-    color:#0f1a4b;
+
+.card-btn:hover {
+    color: #0f1a4b;
     background: #FFF;
- }
+}
+
+.card-btn2:hover {
+    color: #0f1a4b;
+    background: #FFF;
+}
+
 /*
 .card:nth-child(2) .card-btn:hover{
    color:#135fe2;
@@ -89,4 +104,3 @@ h1{
    color:#253653;
     background: #FFF;
 }*/
-

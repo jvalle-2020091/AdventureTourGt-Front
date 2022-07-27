@@ -1,9 +1,9 @@
-<body>
+    <body>      
     <app-navbar></app-navbar>
     <div *ngIf="token && identity.role === 'ADMIN'" class="text-center mt-2 mb-2">
-        <button class="btn btn-outline-success m-4" data-bs-toggle="modal" data-bs-target="#addPlace">
+        <button class="btn btn-warning m-4" data-bs-toggle="modal" data-bs-target="#addPlace">
           <span class="icon">
-            <i class="fa fa-building" aria-hidden="true"></i>
+            <i class="fa fa-location-arrow" aria-hidden="true"></i>
           </span>
           <span class="text">AGREGAR LUGAR</span>
         </button>
@@ -11,11 +11,15 @@
       <hr *ngIf="token && identity.role === 'ADMIN'">
     <div class="text-center mt-4">
         <h1>Lugares turísticos</h1>
-    </div> 
+    </div>
+
+
     
-    <div class="row background">
+    <div class="row justify-content-center px-4">
         <div *ngFor="let place of places  " class="card m-4 text-center" style="width: 18rem;">
             <div class="card-body">
+              <img src="https://www.prensalibre.com/wp-content/uploads/2019/05/tokal.jpg?quality=52" class="card-img-top" alt="...">
+              <hr>
                 <h5 class="card-title">{{ place.name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Descripción: {{ place.description }}</h6>
                 <br>
@@ -31,8 +35,36 @@
             </div>
             <button *ngIf="token"
                      class="btn btn-outline-success m-2" [routerLink]="['/tour/' + place._id]">Ver tours</button>
+                     <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#exampleModalMap">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+
+                      Ver mapa
+                    </button>
         </div>
     </div>
+
+    <!-- Modal MAP-->
+<div class="modal fade" id="exampleModalMap" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ubicación Geográfica</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input id="ocultar-mapa" type="checkbox">
+        <label for="ocultar-mapa">Ocultar mapa</label>
+         
+        <div id="contenedor-iframe">
+          <iframe  src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2853.817891849583!2d-89.62792103824103!3d17.22220332096199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1stikal!5e1!3m2!1ses-419!2sgt!4v1658899319400!5m2!1ses-419!2sgt" 
+          width="450" height="400" style="border:0;" 
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"allowfullscreen=""
+          title="Puerta del Sol" class="button"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     
     <!--  Agregar Lugar-->
     <div class="modal fade" id="addPlace" tabindex="-1" aria-labelledby="addHotelLabel" aria-hidden="true">

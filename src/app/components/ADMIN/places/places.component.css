@@ -1,9 +1,23 @@
 body{
- 
-    /*background-image: url('../../../assets/FONDS-GUIDE-HOTEL-1.png');*/
-    background:#ffffff;
-    height: 100vh
-}
+    height: 200vh;
+
+    background: linear-gradient(135deg, #71b7e6, #203b75);
+  }
 h1 {
-    color: #7a591a
+    color: #4d350a;
+    font-size: 70px;
+    font-family: Times New Roman;
 }
+hr{
+    color: #5e4312; 
+}
+
+#contenedor-iframe {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /*Buscar el hermano #contenedor-iframe de un <input type="checkbox"> seleccionado y lo oculta*/
+  #ocultar-mapa:checked ~ #contenedor-iframe {
+    display: none;
+  }
