@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
 import { ServiceRestService } from 'src/app/services/serviceRest/service-rest.service';
 import { ServiceModel } from 'src/app/models/service.model';
+import { UserRestService } from '../../services/userRest/user-rest.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,14 +14,22 @@ export class ServicesComponent implements OnInit, OnDestroy {
   service: ServiceModel;
   serviceGetId: any
 
+  identity: any;
+  token: any;
+  role: any;
+
   constructor(
-    private serviceRest: ServiceRestService
+    private serviceRest: ServiceRestService,
+    private userRest: UserRestService
   ) { 
    this.service = new ServiceModel('','','',0)
   }
 
   ngOnInit(): void {
   this.getServices ();
+  this.token = this.userRest.getToken();
+    this.identity = this.userRest.getIdentity();
+    this.role = this.userRest.getIdentity().role;
   }
 
   ngOnDestroy(): void {

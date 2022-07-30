@@ -30,7 +30,9 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUsers();
   }
+
   getUsers(){
     this.userRest.getUsers().subscribe({
       next: (res: any) => 

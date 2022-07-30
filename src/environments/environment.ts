@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUri: 'http://localhost:3200/',
+  baseUri: 'https://adventure-tour-gt.herokuapp.com/',
 };
 
 /*

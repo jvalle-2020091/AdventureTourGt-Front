@@ -46,6 +46,10 @@ export class ShoppingCartRestServiceService {
     return this.http.post(environment.baseUri + 'invoice/addInvoice' , params , {headers: this.httpOptions});
   }
 
+  getInvoices(){
+    return this.http.get(environment.baseUri + 'invoice/getInvoices', {headers: this.httpOptions.set('Authorization', this.getToken())});
+  }
+
   getInvoice(id: string){
     return this.http.get(environment.baseUri + 'invoice/getInvoice/' + id,{headers: this.httpOptions})
   }

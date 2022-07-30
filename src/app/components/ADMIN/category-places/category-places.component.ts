@@ -94,6 +94,15 @@ export class CategoryPlacesComponent implements OnInit {
   }
 
   deleteCategory(id: string){
+    Swal.fire({
+      title: 'Are you sure you want to delete category?',
+      showDenyButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: 'Cancel',
+      confirmButtonColor: '#DC3311',
+      denyButtonColor: '#118CDC',
+    }).then((result) => {
+      if (result.isConfirmed) {
     this.categoryRest.deleteCategory(id).subscribe({
       next: (res:any)=> {
         Swal.fire({
@@ -105,14 +114,18 @@ export class CategoryPlacesComponent implements OnInit {
         });
         this.getCategorys();
       },
-      error: (err)=> Swal.fire({
+      error: (err)=> {
+        Swal.fire({
         title: err.error.message,
         icon: 'error',
         position: 'center',
         timer: 3000
-      })
-    })
-  }
+      });
+    },
+  });
+}
+});
+}
 
   filesChange(inputFile:any){
     this.filesToUpload = <Array<File>>inputFile.target.files;

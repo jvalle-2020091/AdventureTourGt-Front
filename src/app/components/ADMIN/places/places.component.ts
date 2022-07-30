@@ -22,6 +22,8 @@ idCategory: any;
 filesToUpload: any;
 placeUpdate: any;
 
+placeSearch: String = '';
+
 token: any;
 role: any;
 
@@ -111,6 +113,15 @@ role: any;
   }
 
   deletePlace(id: string){
+    Swal.fire({
+      title: 'Are you sure you want to delete place?',
+      showDenyButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: 'Cancel',
+      confirmButtonColor: '#DC3311',
+      denyButtonColor: '#118CDC',
+    }).then((result) => {
+      if (result.isConfirmed) {
     this.placeRest.deletePlace(this.idCategory, id).subscribe({
       next: (res:any)=>{
         Swal.fire({
@@ -122,14 +133,18 @@ role: any;
         })
         this.getPlaces();
       },
-      error: (err)=> Swal.fire({
+      error: (err)=>{
+         Swal.fire({
         title: err.error.message,
         icon: 'error',
         position: 'center',
         timer: 3000
-      })
-    })
-  }
+      });
+    },
+  });
+}
+});
+}
 
 
 //FUNCIONES IMG

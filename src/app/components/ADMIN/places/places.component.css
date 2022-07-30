@@ -9,7 +9,7 @@ h1 {
     font-family: Times New Roman;
 }
 hr{
-    color: #5e4312; 
+    color: #c0a471; 
 }
 
 #contenedor-iframe {
@@ -20,4 +20,113 @@ hr{
   /*Buscar el hermano #contenedor-iframe de un <input type="checkbox"> seleccionado y lo oculta*/
   #ocultar-mapa:checked ~ #contenedor-iframe {
     display: none;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    max-width: 300px;
+    min-height: 250px;
+    background: #182c64;
+    padding: 30px;
+    box-sizing: border-box;
+    color: #FFF;
+    margin: 20px;
+    box-shadow: 0px 2px 18px -4px rgba(0, 0, 0, 0.75);
+
+}
+
+/*.card:nth-child(2){
+   background: #1f407a;
+}
+.card:last-child{
+   background: #253653;
+}*/
+.card-title {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+}
+
+.card-content {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+}
+
+.card-btn {
+    position: center;
+    all: unset;
+    display: block;
+    margin-left: 65px;
+    border: 2px solid #FFF;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 10px;
+    font-weight: 600;
+    transition: all 0.5s;
+    cursor: pointer;
+    letter-spacing: 1.2px;
+}
+
+.card-btn2 {
+    all: unset;
+
+    margin-left: 65px;
+    border: 2px solid #FFF;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-size: 10px;
+    font-weight: 600;
+    transition: all 0.5s;
+    cursor: pointer;
+    letter-spacing: 1.2px;
+}
+
+.card-btn:hover {
+    color: #0f1a4b;
+    background: #FFF;
+}
+
+.card-btn2:hover {
+    color: #0f1a4b;
+    background: #FFF;
+}
+
+/*
+.card:nth-child(2) .card-btn:hover{
+   color:#135fe2;
+   background: #FFF;
+}
+.card:last-child .card-btn:hover{
+   color:#253653;
+    background: #FFF;
+}*/
+
+#Buscador {
+    background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-19-32.png) no-repeat 0px 5px;
+    background-size: 30px;
+    margin-left: 20%;
+    width: 260px;
+    border: transparent;
+    border-bottom: solid 1px rgb(0, 0, 0);
+    padding: 10px 10px 10px 30px;
+    outline: none;
+  }
+
+  @media (max-width: 375px){
+    #Buscador{
+        width: 50px;
+    }
+
+  }
+
+  ::placeholder {
+    color: rgb(90, 90, 90);
+    font-size: 1.3em;
   }

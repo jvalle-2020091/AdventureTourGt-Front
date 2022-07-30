@@ -1,5 +1,5 @@
 hr {
-    color: grey
+    color: #ffffff
   }
   body{
     background: linear-gradient(135deg, #71b7e6, #203b75);
@@ -14,7 +14,7 @@ hr {
   .wrapper {
     max-width: 500px;
     width: 100%;
-    background: #fff;
+    background: #182c64;
     margin: 0 auto;
     box-shadow: 1px 1px 2px rgb(0 0 0 / 13%);
     padding: 0px 30px;
@@ -43,7 +43,7 @@ hr {
   
   .wrapper .form .inputfield label{
      width: 200px;
-     color: #000000;
+     color: #fff;
      margin-right: 10px;
     font-size: 17px;
     font-weight: 550;

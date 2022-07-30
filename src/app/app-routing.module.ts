@@ -13,28 +13,24 @@ import { TourComponent } from './components/tour/tour.component';
 import { InvoiceComponent} from './components/ADMIN/invoice/invoice.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { UsersComponent} from './components/ADMIN/users/users.component';
-
-
-
-
-
-
+import { UsersGuard } from './guards/users.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { ClientGuard } from './guards/client.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'category', component: CategoryPlacesComponent},
-  {path: 'place/:idCategory', component: PlacesComponent},
-  {path: 'services', component: ServicesComponent},
-  {path: 'shoppCart/:idTour', component: ShoppingCartComponent},
-  {path: 'tour/:idPlace', component:TourComponent},
-  {path: 'invoice', component: InvoiceComponent},
-  {path: 'myProfile', component: MyProfileComponent},
-  {path: 'users', component: UsersComponent},
 
-
+  {path: 'category', canActivate:[UsersGuard], component: CategoryPlacesComponent},
+  {path: 'place/:idCategory', canActivate:[UsersGuard], component: PlacesComponent},
+  {path: 'services', canActivate:[UsersGuard], component: ServicesComponent},
+  {path: 'shoppCart/:idTour', canActivate:[ClientGuard], component: ShoppingCartComponent},
+  {path: 'tour/:idPlace', canActivate:[UsersGuard], component:TourComponent},
+  {path: 'invoices', canActivate:[AdminGuard], component: InvoiceComponent},
+  {path: 'myProfile', canActivate:[UsersGuard], component: MyProfileComponent},
+  {path: 'users', canActivate:[AdminGuard], component: UsersComponent},
 
   {path: '**', component:NotFoundComponent}
 

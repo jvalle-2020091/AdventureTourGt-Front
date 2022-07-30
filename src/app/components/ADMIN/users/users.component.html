@@ -4,25 +4,34 @@
     <div class="text-center mt-2 mb-2">
         <button class="btn btn-success btn-icon-split" data-bs-toggle="modal" data-bs-target="#addUser">
           <span class="icon">
-            <i class="fa fa-building" aria-hidden="true"></i>
-          </span>
-          <span class="text">Agregar usuarios</span>
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </span> 
+          <span class="text">  &nbsp; Agregar usuarios</span>
         </button>
       </div>
       <hr>
     
     <div class="wrapper" *ngIf="users">
     <div class="card" *ngFor="let user of users">
-        <img  class="card-img-top" src="" alt="user image">
+        <img  class="card-img-top" 
+        src="https://i.blogs.es/66b2a4/photo-1511367461989-f85a21fda167/1366_2000.jpeg"
+         alt="user image">
         <br>
         <h3 class="card-title">{{user.name}}</h3>
         <h6 class="card-subtitle mb-2 text-muted">{{user.username}}</h6>
         <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
         <h6 class="card-subtitle mb-2 text-muted">{{user.role}}</h6>
         <div *ngIf="user.role === 'CLIENT'|| user.role === 'ADMIN-HOTEL'"   class="text-center  ms-3">
-            <button (click)="deleteUser(user._id)" class="btn btn-outline-danger btn-icon-split">Eliminar</button>
+            <button (click)="deleteUser(user._id)" class="btn btn-outline-danger btn-icon-split">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+              </svg> Eliminar</button>
             <button class="btn btn-outline-success btn-icon-split m-2"  (click)="getUser(user._id)"  data-bs-toggle="modal"
-            data-bs-target="#updateUser"  aria-controls="offcanvasExample">Actalizar</button>
+            data-bs-target="#updateUser"  aria-controls="offcanvasExample">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg> Actalizar</button>
         </div>
         </div>
     </div>
@@ -32,7 +41,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-building" aria-hidden="true"></i>
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-user" aria-hidden="true"></i>
               &nbsp; Agregar usuario:</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -113,7 +122,7 @@
               
               <label class="form-label">Role</label>
                             <select [(ngModel)]="userUpdated.role" name="role" class="form-select">
-                                <option value="ADMIN-HOTEL">ADMIN-HOTEL</option>
+                                <option value="ADMIN">ADMIN</option>
                                 <option value="CLIENT">CLIENT</option>
                             </select>
               <div class=" modal-footer justify-content-center">

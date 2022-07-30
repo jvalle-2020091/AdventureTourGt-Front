@@ -21,6 +21,7 @@ import { ServicesComponent } from './components/service/service.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { TourComponent } from './components/tour/tour.component';
 import { InvoiceComponent } from './components/ADMIN/invoice/invoice.component';
+import { PlacesPipe } from './pipes/places.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { InvoiceComponent } from './components/ADMIN/invoice/invoice.component';
     TourComponent,
     SearchPipe,
     InvoiceComponent,
+    PlacesPipe,
 
   ],
   imports: [

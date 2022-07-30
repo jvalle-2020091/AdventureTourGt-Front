@@ -5,17 +5,21 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
   token:string;
   identity:any;
   role:any;
   username:any;
   name:any;
+
+
 
   
   uri:any;
@@ -30,6 +34,7 @@ export class NavbarComponent implements OnInit {
  
 
   ngOnInit(): void {
+
     this.token = this.userRest.getToken();
     this.identity = this.userRest.getIdentity();
     this.role = this.userRest.getIdentity().role;

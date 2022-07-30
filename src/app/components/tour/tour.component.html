@@ -3,11 +3,11 @@
 
 <!--BOTONES DE ACCESO RÁPIDO-->
 <div *ngIf="token && identity.role === 'ADMIN' " class="text-center mt-2 mb-2">
-    <button class="btn btn-outline-warning m-4" data-bs-toggle="modal" data-bs-target="#addTour">
+    <button class="btn btn-warning m-4" data-bs-toggle="modal" data-bs-target="#addTour">
         <span class="icon">
-            <i class="fa fa-building" aria-hidden="true"></i>
+            <i class="fa fa-plane" aria-hidden="true"></i>
         </span>
-        <span class="text">Nuevo Tour</span>
+        <span class="text"> &nbsp; Nuevo Tour</span>
     </button>
 </div>
 <hr *ngIf="token && identity.role === 'ADMIN' ">
@@ -22,7 +22,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel4"><i class="fa fa-building" aria-hidden="true"></i>
+                <h5 class="modal-title" id="exampleModalLabel4"> <i class="fa fa-plane" aria-hidden="true"></i>
                     &nbsp; Agregar Tour:</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -85,8 +85,8 @@
 
 <!--Table View Tour -->
 
-<div class="m-4">
-    <table class="table table-dark">
+<div class="text-center">
+    <table class="table table-dark table-responsive">
         <thead>
             <tr>
                 <th scope="col" class="text-center">Tour</th>

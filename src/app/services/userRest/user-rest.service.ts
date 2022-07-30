@@ -68,24 +68,44 @@ export class UserRestService {
 
    getUser(id : string)
    {
-     return this.http.get(environment.baseUri + 'user/getUser/' + id, {headers : this.httpOptions});
-   }
+     return this.http.get(environment.baseUri + 'user/getUser/' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
+  }
  
    saveUser(params : {})
    {
-     return this.http.post(environment.baseUri + 'user/saveUserHotel', params, {headers: this.httpOptions});
-   }
+     return this.http.post(environment.baseUri + 'user/saveUser', params,  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
+  }
  
    deleteUser(id : string)
    {
-     return this.http.delete(environment.baseUri + 'user/deleteUserHotel/' + id, {headers: this.httpOptions});
-   }
- 
+     return this.http.delete(environment.baseUri + 'user/deleteUser/' + id,  {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: this.getToken(),
+      },
+    });
+  }
+
    updateUser(id: string, params : {})
    {
-     return this.http.put(environment.baseUri + 'user/updateUserHotel/' + id , params, {headers: this.httpOptions})
+     return this.http.put(environment.baseUri + 'user/updateUser/' + id , params,  {
+       headers: {
+         'Content-Type': 'application/json',
+         Authorization: this.getToken(),
+       },
+     });
    }
-
+   
   // Solicitar el token
   getToken() {
     let globalToken = localStorage.getItem('token');

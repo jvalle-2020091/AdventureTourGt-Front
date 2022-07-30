@@ -17,10 +17,12 @@ export class InvoiceComponent implements OnInit {
   shoppingGetId: any;
   invoiceTour: any;
 
+  invoices: any;
+
   id: any;
 
   constructor(
-    private ShoppingCartRest: ShoppingCartRestServiceService,
+    private shoppingCartRest: ShoppingCartRestServiceService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { 
@@ -31,33 +33,33 @@ export class InvoiceComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((idRuta) => {
       this.id = idRuta.get('id');
     });
-
+    this.getInvoices();
+    
   }
-
-  addInvoice(){
-    this.ShoppingCartRest.addInvoice(   this.invoice).subscribe({
-      next: (res: any)=>{
-        Swal.fire({
-          title: res.message,
-          icon: 'success',
-          position: 'center',
-          showConfirmButton: false,
-          timer: 2000
-        });
-
-        console.log(res);
+  getInvoices(){
+    this.shoppingCartRest.getInvoices().subscribe({
+      next: (res:any) => {
+        for (let tour of res.invoices){
         
-        this.invoiceTour = res.updateInvoice ;
+          for(let i = 0; i< tour.tours.length; i++){
+            
+            let x = Object.values(tour.tours[i]) 
+            tour.tours[i] = x[1]
+          
+         }
+  
+  
+        }
+        this.invoices = res.invoices;
+      console.log(res);
+      
       },
       error: (err: any) => {
-        Swal.fire({
-          icon: 'error',
-          title: err.error.message || err.error,
-          confirmButtonColor: '#E74C3C'
-        });
+        console.log(err);
       },
-    })
+    });
   }
+  
 
 }
 

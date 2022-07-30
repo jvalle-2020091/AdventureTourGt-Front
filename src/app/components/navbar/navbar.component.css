@@ -1,0 +1,24 @@
+.fotoPerfil{
+    max-width: 3%;
+    max-height: 3%;
+    border-radius: 50%;
+    float: left;}
+    
+    
+    
+    .imagen{
+    margin: 0 ;
+    
+    }
+    .img-profile {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      
+    }
+    
+    .nav-item:hover{
+      background-color: rgb(94, 91, 91);
+      border-radius: 6%;
+      transition: background-color .5s;
+    }

@@ -150,6 +150,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
     });
   }
 
+  refresh(): void {
+    window.location.reload();
+}
+
   deleteTour(id: string) {
     this.shoppingRest.deleteTour(id).subscribe({
       next: (res: any) => {
