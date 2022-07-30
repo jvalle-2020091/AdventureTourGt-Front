@@ -1,47 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar bg-dark bg-light sticky-top bg-dark px-5" style="background-color: rgb(0, 0, 0);">
+<nav class="navbar navbar-expand-lg navbar bg-dark bg-light sticky-top bg-dark px-5"
+  style="background-color: rgb(0, 0, 0);">
   <div class="container-fluid">
     <a class="navbar-brand mt-2 mt-lg-0" routerLink="/home">
       <img src="../../../assets/Adventure.png" alt="" width="180" height="35" />
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a  style="color: white;" class="nav-link" routerLink="/home">Inicio</a>
+          <a style="color: white;" class="nav-link" routerLink="/home">Inicio</a>
         </li>
         <li class="nav-item">
-          <a   style="color: white;" *ngIf="!token" class="nav-link" routerLink="/login">Login</a>
+          <a style="color: white;" *ngIf="!token" class="nav-link" routerLink="/login">Login</a>
         </li>
         <li class="nav-item">
-          <a  style="color: white;" *ngIf="!token" class="nav-link" routerLink="/register"
-            >Registrarse</a
-          >
+          <a style="color: white;" *ngIf="!token" class="nav-link" routerLink="/register">Registrarse</a>
         </li>
         <li class="nav-item">
-          <a  style="color: white;" class="nav-link" routerLink="/category">¿A dónde quieres ir?</a>
+          <a style="color: white;" class="nav-link" routerLink="/category">¿A dónde quieres ir?</a>
         </li>
         <li *ngIf="token && identity.role === 'ADMIN'" class="nav-item">
-          <a  style="color: white;" class="nav-link" routerLink="/users">Usuarios</a>
+          <a style="color: white;" class="nav-link" routerLink="/users">Usuarios</a>
         </li>
         <li *ngIf="token && identity.role === 'CLIENT'" class="nav-item">
-          <a  style="color: white;" class="nav-link" routerLink="/services">Servicios</a>
+          <a style="color: white;" class="nav-link" routerLink="/services">Servicios</a>
         </li>
         <li *ngIf="token && identity.role === 'ADMIN'" class="nav-item">
-          <a  style="color: white;" class="nav-link" routerLink="/invoices">Facturas</a>
+          <a style="color: white;" class="nav-link" routerLink="/invoices">Facturas</a>
         </li>
 
         <li *ngIf="token" class="nav-item">
-          <a  style="color: white;" class="nav-link disabled">
+          <a style="color: white;" class="nav-link disabled">
             <i class="fa fa-user-o"> </i>
             {{ name }}
           </a>
@@ -49,23 +41,19 @@
 
         <ul class="navbar-nav d-flex pull-left " *ngIf="token">
           <li class="nav-item dropend">
-              <a  style="color: white;" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">   
-                  <i class="fa fa-bars" aria-hidden="true"></i>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" routerLink="/myProfile">Mi perfil</a></li>
-                  <li><a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a></li>
-                  <li>
-                      <hr class="dropdown-divider">
-                  </li>      
-              </ul>
+            <a style="color: white;" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/myProfile">Mi perfil</a></li>
+              <li><a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+            </ul>
           </li>
-      </ul>
-
-        
-      
-       
+        </ul>
       </ul>
     </div>
   </div>

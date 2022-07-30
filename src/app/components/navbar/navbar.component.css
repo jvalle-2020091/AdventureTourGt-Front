@@ -22,3 +22,7 @@
       border-radius: 6%;
       transition: background-color .5s;
     }
+
+#derecho{
+  margin-left: 65%;
+}
